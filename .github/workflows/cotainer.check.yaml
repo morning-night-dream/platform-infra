@@ -1,8 +1,5 @@
 name: container check
 on:
-  push:
-    branches:
-      - main
   pull_request:
     paths:
       - .github/workflows/container.check.yaml
