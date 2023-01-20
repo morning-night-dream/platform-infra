@@ -9,10 +9,6 @@ on:
 env:
   COCKROACH_API_KEY: ${{ secrets.COCKROACH_API_KEY }}
   TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_API_TOKEN }}
-  TF_VAR_env: prev
-  TF_VAR_sql_user_password: ${{ secrets.COCKROACH_SQL_USER_PASSWORD }}
-  TF_VAR_upstash_email: ${{ secrets.UPSTASH_EMAIL }}
-  TF_VAR_upstash_api_key: ${{ secrets.UPSTASH_API_KEY }}
 jobs:
   preview:
     runs-on: ubuntu-latest
@@ -27,6 +23,14 @@ jobs:
       - name: Terraform init
         run: terraform init
       - name: Terraform plan
-        run: terraform plan
+        run: |
+          terraform plan \
+            -var 'sql_user_password=${{ secrets.COCKROACH_SQL_USER_PASSWORD }}' \
+            -var 'upstash_email=${{ secrets.UPSTASH_EMAIL }}' \
+            -var 'upstash_api_key=${{ secrets.UPSTASH_API_KEY }}'
       - name: Terraform apply
-        run: terraform apply -auto-approve
+        run: |
+          terraform apply -auto-approve \
+            -var 'sql_user_password=${{ secrets.COCKROACH_SQL_USER_PASSWORD }}' \
+            -var 'upstash_email=${{ secrets.UPSTASH_EMAIL }}' \
+            -var 'upstash_api_key=${{ secrets.UPSTASH_API_KEY }}'
