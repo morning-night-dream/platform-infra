@@ -1,3 +1,4 @@
-module "morning-night-dream" {
+module "dream" {
   source = "../.."
+  env    = "prod"
 }
