@@ -1,8 +1,5 @@
 name: manifest lint
 on:
-  push:
-    branches:
-      - main
   pull_request:
     paths:
       - .github/workflows/manifest.lint.yaml
