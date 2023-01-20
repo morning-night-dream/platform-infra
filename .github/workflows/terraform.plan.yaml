@@ -22,9 +22,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up terraform
-        uses: ./.github/actions/terraform/setup
-        with:
-          env: prod
+      - name: Install gettext
+        run: sudo apt-get install gettext
+      - name: Create backend.tf
+        env:
+          ENV: ${{ env.TF_VAR_env }}
+        run: envsubst '$$ENV' < backend.tf.template > backend.tf
+      - name: Confirm backend.tf
+        run: cat backend.tf
+      - name: Terraform init
+        run: terraform init
       - name: Terraform plan
         run: terraform plan
