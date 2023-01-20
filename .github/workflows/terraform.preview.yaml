@@ -2,6 +2,7 @@ name: terraform preview
 on:
   pull_request:
     paths:
+      - .github/actions/terraform/setup/action.yaml
       - .github/workflows/terraform.preview.yaml
       - '**.tf'
       - '**.hcl'
@@ -9,28 +10,24 @@ on:
 env:
   COCKROACH_API_KEY: ${{ secrets.COCKROACH_API_KEY }}
   TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_API_TOKEN }}
+  TF_VAR_env: prev
+  TF_VAR_sql_user_password: ${{ secrets.COCKROACH_SQL_USER_PASSWORD }}
+  TF_VAR_upstash_email: ${{ secrets.UPSTASH_EMAIL }}
+  TF_VAR_upstash_api_key: ${{ secrets.UPSTASH_API_KEY }}
 jobs:
   preview:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: terraform/env/prev
+        working-directory: terraform
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Setup terraform
-        uses: hashicorp/setup-terraform@v2
-      - name: Terraform init
-        run: terraform init
+      - name: Set up terraform
+        uses: ./.github/actions/terraform/setup
+        with:
+          env: prev
       - name: Terraform plan
-        run: |
-          terraform plan \
-            -var 'sql_user_password=${{ secrets.COCKROACH_SQL_USER_PASSWORD }}' \
-            -var 'upstash_email=${{ secrets.UPSTASH_EMAIL }}' \
-            -var 'upstash_api_key=${{ secrets.UPSTASH_API_KEY }}'
+        run: terraform plan
       - name: Terraform apply
-        run: |
-          terraform apply -auto-approve \
-            -var 'sql_user_password=${{ secrets.COCKROACH_SQL_USER_PASSWORD }}' \
-            -var 'upstash_email=${{ secrets.UPSTASH_EMAIL }}' \
-            -var 'upstash_api_key=${{ secrets.UPSTASH_API_KEY }}'
+        run: terraform apply -auto-approve
