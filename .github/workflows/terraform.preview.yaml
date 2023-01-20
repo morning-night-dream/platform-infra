@@ -1,0 +1,32 @@
+name: terraform preview
+on:
+  pull_request:
+    paths:
+      - .github/workflows/terraform.preview.yaml
+      - '**.tf'
+      - '**.hcl'
+      - '**.template'
+env:
+  COCKROACH_API_KEY: ${{ secrets.COCKROACH_API_KEY }}
+  TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_API_TOKEN }}
+  TF_VAR_env: prev
+  TF_VAR_sql_user_password: ${{ secrets.COCKROACH_SQL_USER_PASSWORD }}
+  TF_VAR_upstash_email: ${{ secrets.UPSTASH_EMAIL }}
+  TF_VAR_upstash_api_key: ${{ secrets.UPSTASH_API_KEY }}
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform/env/prev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Terraform init
+        run: terraform init
+      - name: Terraform plan
+        run: terraform plan
+      - name: Terraform apply
+        run: terraform apply -auto-approve

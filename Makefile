@@ -1,11 +1,14 @@
 SHELL=/bin/bash
 
+export
+ENV := dev
+
 .PHONY: tool
 tool:
 	@aqua i
 
-.PHONY: fmt
-fmt:
+.PHONY: ymlfmt
+ymlfmt:
 	@yamlfmt
 
 AGE_PUBLIC_KEY=age1jglwyzrn80auhq0k93mv8zqn5ezt6ngsdvhjn23nwfh0quq7wussn2tdm3
@@ -24,3 +27,12 @@ encrypt:
 .PHONY: decrypt
 decrypt:
 	@sops --decrypt --in-place k8s/templates/${SECRET_FILE_NAME}
+
+.PHONY: tfmt
+tfmt:
+	@terraform fmt -recursive
+
+.PHONY: tflint
+tflint:
+	@terraform fmt -recursive -check && \
+	terraform validate
