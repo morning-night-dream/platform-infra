@@ -12,27 +12,32 @@
     age-keygen
     ```
 
-1. 公開鍵を`Makefile`の`AGE_PUBLIC_KEY`に設定
+1. 公開鍵を`script/encrypt.sh`の`key`に設定
 
 1. 秘密鍵を`Octeto`の`Settings` > `Secrets`に、`SOPS_AGE_KEY`という名前で設定
 
+1. (ローカル)秘密鍵を`.secret.enc`に`SOPS_AGE_KEY`という名前で設定
+
 ## Add secret
 
-1. `secret-{シークレット名}.yaml`を追加し、`data.{シークレット名}`に対応するシークレット値を入れる
-2. `make encrypt secret-{シークレット名}.yaml`を実行
-3. `scripts/sops.sh`のシークレットの復号化処理に`./sops --decrypt --in-place k8s/templates/secret-{シークレット名}.yaml`を追記
+1. `make secret secret=${secret}`を実行
+    ex) `make secret secret=password`
+1. `k8s/templates/secret/${secret}.in.txt`にシークレット値を設定
+1. `make encrypt secret=${secret}`を実行
+    ex) `make encrypt secret=password`
+1. `octeto/sops.sh`のシークレットの復号化処理に`./sops --decrypt --in-place k8s/templates/secret{secret}.yaml`を追記
 
 ## Change secret
 
-1. `secret-{シークレット名}.yaml`の`data.{シークレット名}`を新しい値に書き換える
-2. `make encrypt secret-{シークレット名}.yaml`を実行
+1. `k8s/templates/secret/${secret}.in.txt`にシークレット値を設定
+1. `make encrypt secret=${secret}`を実行
+    ex) `make encrypt secret=password`
 
-
-## decode secret value
-
-```sh
-echo -n 'pMnnWGgA9X2-SuzzRuDnW3DNaKrcw8' | base64
-```
+## Confirm secret @Local
+1. 秘密鍵を`.secret.enc`に`SOPS_AGE_KEY`という名前で設定
+1. `make decrypt secret=${secret}`を実行
+    ex) `make make decrypt secret=password`
+1. `k8s/templates/secret/${secret}.out.txt`を確認
 
 # terraform
 
