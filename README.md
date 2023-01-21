@@ -20,28 +20,23 @@
 
 ## Add secret
 
-1. `k8s/templates/secret/{secret}.yaml`を追加し下記の`yaml`を入力
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-    name: platform-${secret}
-    type: Opaque
-    data:
-        ${secret}: ""
-    ```
+1. `make secret secret=${secret}`を実行
+    ex) `make secret secret=password`
 1. `k8s/templates/secret/${secret}.in.txt`にシークレット値を設定
 1. `make encrypt secret=${secret}`を実行
+    ex) `make encrypt secret=password`
 1. `octeto/sops.sh`のシークレットの復号化処理に`./sops --decrypt --in-place k8s/templates/secret{secret}.yaml`を追記
 
 ## Change secret
 
 1. `k8s/templates/secret/${secret}.in.txt`にシークレット値を設定
 1. `make encrypt secret=${secret}`を実行
+    ex) `make encrypt secret=password`
 
 ## Confirm secret @Local
 1. 秘密鍵を`.secret.enc`に`SOPS_AGE_KEY`という名前で設定
 1. `make decrypt secret=${secret}`を実行
+    ex) `make make decrypt secret=password`
 1. `k8s/templates/secret/${secret}.out.txt`を確認
 
 # terraform

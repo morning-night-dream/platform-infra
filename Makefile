@@ -20,6 +20,10 @@ tflint:
 	@terraform fmt -recursive -check && \
 	terraform validate
 
+.PHONY: secret
+secret:
+	@script/secret.sh ${secret}
+
 .PHONY: encrypt
 encrypt:
 	@script/encrypt.sh ${secret}
