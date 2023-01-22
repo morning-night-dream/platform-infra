@@ -16,3 +16,5 @@ chmod +x sops
 ./sops --decrypt --in-place k8s/templates/secret/api-key.yaml
 
 ./sops --decrypt --in-place k8s/templates/secret/database-url.yaml
+
+./sops --decrypt --in-place k8s/templates/secret/redis-url.yaml

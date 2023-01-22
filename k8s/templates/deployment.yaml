@@ -30,6 +30,11 @@ spec:
                 secretKeyRef:
                   name: platform-secret-api-key
                   key: api-key
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secret-redis-url
+                  key: redis-url
           resources:
             limits:
               cpu: 500m
