@@ -18,6 +18,8 @@ spec:
         - name: platform
           image: "{{ .Values.image.organization }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           env:
+            - name: ENV
+              value: "{{ .Values.env }}"
             - name: PORT
               value: "8080"
             - name: DATABASE_URL
