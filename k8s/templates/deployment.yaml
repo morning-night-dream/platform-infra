@@ -35,6 +35,18 @@ spec:
                 secretKeyRef:
                   name: platform-secret-redis-url
                   key: redis-url
+            - name: FIREBASE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secret-firebase-secret
+                  key: firebase-secret
+            - name: FIREBASE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secret-firebase-api-key
+                  key: firebase-api-key
+            - name: FIREBASE_API_ENDPOINT
+              value: https://identitytoolkit.googleapis.com
           resources:
             limits:
               cpu: 500m
