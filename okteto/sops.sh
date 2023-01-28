@@ -18,3 +18,7 @@ chmod +x sops
 ./sops --decrypt --in-place k8s/templates/secret/database-url.yaml
 
 ./sops --decrypt --in-place k8s/templates/secret/redis-url.yaml
+
+./sops --decrypt --in-place k8s/templates/secret/firebase-api-key.yaml
+
+./sops --decrypt --in-place k8s/templates/secret/firebase-secret.yaml
