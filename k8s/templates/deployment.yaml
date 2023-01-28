@@ -5,7 +5,7 @@ metadata:
   labels:
     app: platform
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: platform
@@ -51,26 +51,26 @@ spec:
               value: https://identitytoolkit.googleapis.com
           resources:
             limits:
-              cpu: 500m
-              memory: 512Mi
-        - name: db
-          image: postgres:14.6-alpine
-          env:
-            - name: TZ
-              value: "UTC"
-            - name: LANG
-              value: "ja_JP.UTF-8"
-            - name: POSTGRES_DB
-              value: "postgres"
-            - name: POSTGRES_USER
-              value: "postgres"
-            - name: POSTGRES_PASSWORD
-              value: "postgres"
-            - name: POSTGRES_INITDB_ARGS
-              value: "--encoding=UTF-8"
-            - name: POSTGRES_HOST_AUTH_METHOD
-              value: "trust"
-          resources:
-            limits:
-              cpu: 500m
-              memory: 512Mi
+              cpu: 250m
+              memory: 256Mi
+        # - name: db
+        #   image: postgres:14.6-alpine
+        #   env:
+        #     - name: TZ
+        #       value: "UTC"
+        #     - name: LANG
+        #       value: "ja_JP.UTF-8"
+        #     - name: POSTGRES_DB
+        #       value: "postgres"
+        #     - name: POSTGRES_USER
+        #       value: "postgres"
+        #     - name: POSTGRES_PASSWORD
+        #       value: "postgres"
+        #     - name: POSTGRES_INITDB_ARGS
+        #       value: "--encoding=UTF-8"
+        #     - name: POSTGRES_HOST_AUTH_METHOD
+        #       value: "trust"
+        #   resources:
+        #     limits:
+        #       cpu: 500m
+        #       memory: 512Mi
