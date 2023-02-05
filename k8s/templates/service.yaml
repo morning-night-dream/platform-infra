@@ -8,7 +8,7 @@ metadata:
     dev.okteto.com/auto-ingress: "true"
 spec:
   selector:
-    app: platform
+    app: platform-app-gateway
   ports:
     - protocol: TCP
       port: 8080

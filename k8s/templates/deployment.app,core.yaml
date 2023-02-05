@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: platform
+  name: platform-app-core
   labels:
-    app: platform
+    app: platform-app-core
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: platform
+      app: platform-app-core
   template:
     metadata:
       labels:
-        app: platform
+        app: platform-app-core
     spec:
       containers:
-        - name: platform
-          image: "{{ .Values.image.organization }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        - name: platform-app-core
+          image: "{{ .Values.image.organization }}/platform-app-core:{{ .Values.image.tag }}"
           env:
             - name: ENV
               value: "{{ .Values.env }}"
@@ -53,24 +53,3 @@ spec:
             limits:
               cpu: 250m
               memory: 256Mi
-        # - name: db
-        #   image: postgres:14.6-alpine
-        #   env:
-        #     - name: TZ
-        #       value: "UTC"
-        #     - name: LANG
-        #       value: "ja_JP.UTF-8"
-        #     - name: POSTGRES_DB
-        #       value: "postgres"
-        #     - name: POSTGRES_USER
-        #       value: "postgres"
-        #     - name: POSTGRES_PASSWORD
-        #       value: "postgres"
-        #     - name: POSTGRES_INITDB_ARGS
-        #       value: "--encoding=UTF-8"
-        #     - name: POSTGRES_HOST_AUTH_METHOD
-        #       value: "trust"
-        #   resources:
-        #     limits:
-        #       cpu: 500m
-        #       memory: 512Mi
