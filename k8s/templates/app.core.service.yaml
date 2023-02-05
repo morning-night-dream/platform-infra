@@ -4,8 +4,6 @@ metadata:
   name: platform-app-core-service
   labels:
     app: platform-app-core
-  annotations:
-    dev.okteto.com/auto-ingress: "true"
 spec:
   selector:
     app: platform-app-core
