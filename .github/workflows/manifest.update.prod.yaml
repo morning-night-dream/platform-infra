@@ -1,4 +1,4 @@
-name: manifest lint
+name: manifest update prod
 on:
   repository_dispatch:
     types:
@@ -8,7 +8,7 @@ env:
   BRANCH_NAME: release/${{ github.event.client_payload.tag }}
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Generate token
         id: generate_token
@@ -31,7 +31,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
-          git commit -m "feat image tag"
+          git commit -m "update image tag ${{ github.event.client_payload.tag }}"
           git push --set-upstream origin ${{ env.BRANCH_NAME }}
       - name: Create release pr
         run: |
