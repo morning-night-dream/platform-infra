@@ -36,4 +36,5 @@ jobs:
       - name: Create release pr
         run: |
           export GH_TOKEN=${{ steps.generate_token.outputs.token }}
-          gh pr create --base main --title "Release ${{ github.event.client_payload.tag }}" -b ""
+          url=$(gh pr create --base main --title "Release ${{ github.event.client_payload.tag }}" -b "")
+          echo "${url}"
