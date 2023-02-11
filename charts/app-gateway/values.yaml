@@ -2,4 +2,4 @@ env: prod
 image:
   organization: morningnightdream
   repository: platform-app-gateway
-  tag: 2023-02-10-15-18-35
+  tag: 2023-02-11-17-21-40
