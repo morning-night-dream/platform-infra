@@ -3,7 +3,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/manifest.lint.yaml
-      - k8s/**/*.yaml
+      - charts/**/*.yaml
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -16,4 +16,7 @@ jobs:
           chmod +x get_helm.sh
           ./get_helm.sh
       - name: Helm lint
-        run: helm lint k8s
+        run: |
+          for chart in $(find charts -type d -depth 1) ; do
+            helm lint ${chart};
+          done
