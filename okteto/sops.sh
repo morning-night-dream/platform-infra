@@ -13,12 +13,12 @@ mv sops-v${SOPS_VERSION}.linux.amd64 sops
 chmod +x sops
 
 # シークレットの復号化
-./sops --decrypt --in-place k8s/templates/secret/api-key.yaml
+./sops --decrypt --in-place charts/secret/api-key.yaml
 
-./sops --decrypt --in-place k8s/templates/secret/database-url.yaml
+./sops --decrypt --in-place charts/secret/database-url.yaml
 
-./sops --decrypt --in-place k8s/templates/secret/redis-url.yaml
+./sops --decrypt --in-place charts/secret/redis-url.yaml
 
-./sops --decrypt --in-place k8s/templates/secret/firebase-api-key.yaml
+./sops --decrypt --in-place charts/secret/firebase-api-key.yaml
 
-./sops --decrypt --in-place k8s/templates/secret/firebase-secret.yaml
+./sops --decrypt --in-place charts/secret/firebase-secret.yaml

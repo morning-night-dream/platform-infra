@@ -1,3 +1,7 @@
 #!/bin/sh -eu
 
-helm upgrade --install morning-night-dream-platform ./k8s --namespace=fs-morning-night-dreamer --values ./k8s/values.yaml --values ./k8s/env/prod/values.yaml
+helm upgrade --install --wait morning-night-dream-platform ./charts/secret --namespace=toy-morning-night-dreamer
+
+helm upgrade --install --wait morning-night-dream-platform ./charts/app-core --namespace=toy-morning-night-dreamer
+
+helm upgrade --install --wait morning-night-dream-platform ./charts/app-gateway --namespace=toy-morning-night-dreamer

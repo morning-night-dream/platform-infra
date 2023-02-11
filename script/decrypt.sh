@@ -1,7 +1,7 @@
 #!/bin/bash -ue
 
-sops --decrypt k8s/templates/secret/${secret}.yaml > k8s/templates/secret/${secret}.tmp.yaml
+sops --decrypt charts/secret/templates/${secret}.yaml > charts/secret/templates/${secret}.tmp.yaml
 
-yq ".data.${secret}" k8s/templates/secret/${secret}.tmp.yaml | base64 -D > k8s/templates/secret/${secret}.out.txt
+yq ".data.${secret}" charts/secret/templates/${secret}.tmp.yaml | base64 -D > charts/secret/templates/${secret}.out.txt
 
-rm k8s/templates/secret/${secret}.tmp.yaml
+rm charts/secret/templates/${secret}.tmp.yaml

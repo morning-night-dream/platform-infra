@@ -11,6 +11,12 @@ tool:
 ymlfmt:
 	@yamlfmt
 
+.PHONY: helmlint
+helmlint:
+	@helm lint charts/app-core
+	@helm lint charts/app-gateway
+	@helm lint charts/secret
+
 .PHONY: tfmt
 tfmt:
 	@terraform fmt -recursive

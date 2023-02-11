@@ -2,7 +2,7 @@
 
 secret=$1
 
-cat << EOF > k8s/templates/secret/${secret}.yaml
+cat << EOF > charts/secret/templates/${secret}.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -12,6 +12,6 @@ data:
     ${secret}: ""
 EOF
 
-touch k8s/templates/secret/${secret}.in.txt
+touch charts/secret/templates/${secret}.in.txt
 
-touch k8s/templates/secret/${secret}.out.txt
+touch charts/secret/templates/${secret}.out.txt
