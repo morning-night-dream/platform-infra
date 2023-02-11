@@ -1,0 +1,16 @@
+name: manifest find
+on:
+  push:
+    paths:
+      - .github/workflows/manifest.find.yaml
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Helm lint
+        run: |
+          for chart in $(find charts -type d -depth 1) ; do
+            echo "${chart}";
+          done
