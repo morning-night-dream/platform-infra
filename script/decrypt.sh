@@ -1,9 +1,11 @@
 #!/bin/bash -ue
 
-secret=$1
+chart=$1
 
-sops --decrypt charts/secret/templates/${secret}.yaml > charts/secret/templates/${secret}.tmp.yaml
+secret=$2
 
-yq ".data.${secret}" charts/secret/templates/${secret}.tmp.yaml | base64 -D > charts/secret/templates/${secret}.out.txt
+sops --decrypt charts/${chart}/templates/secret/${secret}.yaml > charts/${chart}/templates/secret/${secret}.tmp.yaml
 
-rm charts/secret/templates/${secret}.tmp.yaml
+yq ".data.${secret}" charts/${chart}/templates/secret/${secret}.tmp.yaml | base64 -D > charts/${chart}/templates/secret/${secret}.out.txt
+
+rm charts/${chart}/templates/secret/${secret}.tmp.yaml

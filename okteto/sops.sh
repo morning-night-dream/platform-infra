@@ -12,13 +12,6 @@ mv sops-v${SOPS_VERSION}.linux.amd64 sops
 
 chmod +x sops
 
-# シークレットの復号化
-./sops --decrypt --in-place charts/secret/templates/api-key.yaml
-
-./sops --decrypt --in-place charts/secret/templates/database-url.yaml
-
-./sops --decrypt --in-place charts/secret/templates/redis-url.yaml
-
-./sops --decrypt --in-place charts/secret/templates/firebase-api-key.yaml
-
-./sops --decrypt --in-place charts/secret/templates/firebase-secret.yaml
+for chart in $(find charts | grep secret | grep yaml) ; do
+    ./sops --decrypt --in-place ${chart}
+done
