@@ -36,7 +36,7 @@ jobs:
           git config user.email github-actions@github.
           git add .
           git commit -m "update image tag ${{ github.event.client_payload.tag }}"
-          git push --set-upstream origin 
+          git push --set-upstream origin ${{ env.BRANCH_NAME }}
       - name: Create release pr
         id: create_release_pr
         run: |
