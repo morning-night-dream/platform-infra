@@ -13,9 +13,9 @@ ymlfmt:
 
 .PHONY: helmlint
 helmlint:
-	@helm lint charts/app-core
-	@helm lint charts/app-gateway
-	@helm lint charts/secret
+	@for chart in $(find charts -type d -depth 1) ; do \
+      helm lint ${chart}; \
+    done
 
 .PHONY: tfmt
 tfmt:
