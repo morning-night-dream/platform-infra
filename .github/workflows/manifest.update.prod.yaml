@@ -1,0 +1,39 @@
+name: manifest lint
+on:
+  repository_dispatch:
+    types:
+      - manifest-update-prod
+env:
+  TAG: ${{ github.event.client_payload.tag }}
+  BRANCH_NAME: release/${{ github.event.client_payload.tag }}
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.MY_GITHUB_APP_ID }}
+          private_key: ${{ secrets.MY_GITHUB_APP_PRIVATE_KEY }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ steps.generate_token.outputs.token }}
+      - name: Update manifest
+        run: |
+          for chart in $(find charts -type d -depth 1) ; do
+            yq '.image.tag=env(TAG)' ${chart}/values.yaml > ${chart}/values.yaml.tmp && mv ${chart}/values.yaml.tmp ${chart}/values.yaml;
+          done
+      - name: Git push
+        run: |
+          git config --global credential.helper 'github-apps -privatekey ${{ secrets.MY_GITHUB_APP_PRIVATE_KEY }} -appid ${{ secrets.MY_GITHUB_APP_ID }} -login ${{ github.repository_owner }}'
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "feat image tag"
+          git push --set-upstream origin ${{ env.BRANCH_NAME }}
+      - name: Create release pr
+        run: |
+          export GH_TOKEN=${{ steps.generate_token.outputs.token }}
+          gh pr create --base main --title "Release ${{ github.event.client_payload.tag }}" -b ""
