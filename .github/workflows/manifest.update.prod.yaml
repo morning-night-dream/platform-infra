@@ -22,7 +22,7 @@ jobs:
           token: ${{ steps.generate_token.outputs.token }}
       - name: Update manifest
         run: |
-          for chart in $(find charts -type d -depth 1) ; do
+          for chart in $(find charts -type d -depth "1") ; do
             yq '.image.tag=env(TAG)' ${chart}/values.yaml > ${chart}/values.yaml.tmp && mv ${chart}/values.yaml.tmp ${chart}/values.yaml;
           done
       - name: Git push
