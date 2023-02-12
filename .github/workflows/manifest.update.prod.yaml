@@ -43,6 +43,3 @@ jobs:
           export GH_TOKEN=${{ steps.generate_token.outputs.token }}
           url=$(gh pr create --base main --title "Release ${{ github.event.client_payload.tag }}" -b "")
           echo "url=${url}" >> $GITHUB_OUTPUT
-      - name: Notice slack
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data "{\"text\": \"<!channel>\n\nリリース<${{ steps.create_release_pr.outputs.url }}|PR>が作成されたよ♪\"}" ${{ secrets.SLACK_WEBHOOKS_URL }}
