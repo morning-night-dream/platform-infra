@@ -1,10 +1,12 @@
 #!/bin/bash -ue
 
-chart=$1
+env=$1
 
-secret=$2
+chart=$2
 
-cat << EOF > charts/${chart}/templates/secret/${secret}.yaml
+secret=$3
+
+cat << EOF > charts/secret/env/${env}/${chart}/${secret}.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -14,6 +16,6 @@ data:
     ${secret}: ""
 EOF
 
-touch charts/${chart}/templates/secret/${secret}.in.txt
+touch charts/secret/env/${env}/${chart}/${secret}.in.txt
 
-touch charts/${chart}/templates/secret/${secret}.out.txt
+touch charts/secret/env/${env}/${chart}/${secret}.out.txt
