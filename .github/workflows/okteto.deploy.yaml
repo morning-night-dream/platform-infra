@@ -19,4 +19,4 @@ jobs:
       - name: Okteto login
         run: okteto login --token ${{ secrets.OKTETO_TOKEN }}
       - name: Okteto deploy
-        run: okteto deploy --namespace toy-morning-night-dreamer
+        run: okteto deploy --file okteto/okteto.yaml --namespace toy-morning-night-dreamer
