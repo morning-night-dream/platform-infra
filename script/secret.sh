@@ -6,7 +6,7 @@ chart=$2
 
 secret=$3
 
-cat << EOF > charts/secret/env/${env}/${chart}/${secret}.yaml
+cat << EOF > secret/env/${env}/${chart}/${secret}.yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -16,6 +16,6 @@ data:
     ${secret}: ""
 EOF
 
-touch charts/secret/env/${env}/${chart}/${secret}.in.txt
+touch secret/env/${env}/${chart}/${secret}.in.txt
 
-touch charts/secret/env/${env}/${chart}/${secret}.out.txt
+touch secret/env/${env}/${chart}/${secret}.out.txt

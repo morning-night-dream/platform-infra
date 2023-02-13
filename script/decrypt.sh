@@ -6,8 +6,8 @@ chart=$2
 
 secret=$3
 
-sops --decrypt charts/secret/env/${env}/${chart}/${secret}.yaml > charts/secret/env/${env}/${chart}/${secret}.tmp.yaml
+sops --decrypt secret/env/${env}/${chart}/${secret}.yaml > secret/env/${env}/${chart}/${secret}.tmp.yaml
 
-yq ".data.${secret}" charts/secret/env/${env}/${chart}/${secret}.tmp.yaml | base64 -D > charts/secret/env/${env}/${chart}/${secret}.out.txt
+yq ".data.${secret}" secret/env/${env}/${chart}/${secret}.tmp.yaml | base64 -D > secret/env/${env}/${chart}/${secret}.out.txt
 
-rm charts/secret/env/${env}/${chart}/${secret}.tmp.yaml
+rm secret/env/${env}/${chart}/${secret}.tmp.yaml
