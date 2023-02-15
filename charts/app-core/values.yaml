@@ -2,4 +2,4 @@ env: prod
 image:
   organization: morningnightdream
   repository: platform-app-core
-  tag: 2023-02-15-15-28-05
+  tag: 2023-02-15-15-43-34
