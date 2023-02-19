@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Generate token
-        id: generate_token
+        id: generate-token
         uses: tibdex/github-app-token@v1
         with:
           app_id: ${{ secrets.MY_GITHUB_APP_ID }}
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          token: ${{ steps.generate_token.outputs.token }}
+          token: ${{ steps.generate-token.outputs.token }}
       - name: Update manifest
         run: |
           for chart in $(find charts -mindepth 1 -maxdepth 1 -type d) ; do
@@ -38,12 +38,12 @@ jobs:
           git commit -m "update image tag ${{ github.event.client_payload.tag }}"
           git push --set-upstream origin ${{ env.BRANCH_NAME }}
       - name: Create release pr
-        id: create_release_pr
+        id: create-release-pr
         run: |
-          export GH_TOKEN=${{ steps.generate_token.outputs.token }}
+          export GH_TOKEN=${{ steps.generate-token.outputs.token }}
           body="${{ github.event.client_payload.tag }}: [リリースノート](https://github.com/morning-night-dream/platform-app/releases/tag/${{ github.event.client_payload.tag }})"
           url=$(gh pr create --base main --title "Release ${{ github.event.client_payload.tag }}" --body "${body}" --label release)
           echo "url=${url}" >> $GITHUB_OUTPUT
       - name: Notice slack
         run: |
-          curl -X POST -H 'Content-type: application/json' --data "{\"text\": \"<!channel>\n\nリリース<${{ steps.create_release_pr.outputs.url }}|PR>が作成されたよ♪\n\n<https://github.com/morning-night-dream/platform-app/releases/tag/${{ github.event.client_payload.tag }}|リリースノート>\"}" ${{ secrets.TEST_SLACK_WEBHOOKS_URL }}
+          curl -X POST -H 'Content-type: application/json' --data "{\"text\": \"<!channel>\n\nリリース<${{ steps.create-release-pr.outputs.url }}|PR>が作成されたよ♪\n\n<https://github.com/morning-night-dream/platform-app/releases/tag/${{ github.event.client_payload.tag }}|リリースノート>\"}" ${{ secrets.TEST_SLACK_WEBHOOKS_URL }}
