@@ -37,3 +37,11 @@ encrypt:
 .PHONY: decrypt
 decrypt:
 	@script/decrypt.sh ${env} ${chart} ${secret}
+
+.PHONY: tfdev
+tfdev:
+	@(cd terraform && ENV=dev envsubst '$$ENV' < backend.tf.template > backend.tf)
+
+.PHONY: tfinit
+tfinit:
+	@(cd terraform && terraform init)

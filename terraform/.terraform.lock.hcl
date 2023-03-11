@@ -30,6 +30,7 @@ provider "registry.terraform.io/upstash/upstash" {
   constraints = "1.2.5"
   hashes = [
     "h1:E6sniPU+Epkj1QUcyPs9Ygat1q/Z5Z+exubWNvJ0TKs=",
+    "h1:UjaEN5sTig6u8SHOIuOg+mAykSGjzz9PyigW20QEEC8=",
     "zh:51a8b15ca9dc5737240a2844934b260b796ff883361aa8f3385f59b948478bed",
     "zh:5ddacb8ea5ea7473d459eeae778fb1c08de1c69890d2bf90029c82fd97446573",
     "zh:66e72089d8553f444b40efc053c9a175a63f2909f94b0566d008671c119a6689",

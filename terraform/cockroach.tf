@@ -19,7 +19,7 @@ variable "cloud_provider" {
 variable "cloud_provider_regions" {
   type     = list(string)
   nullable = false
-  default  = ["asia-southeast1"]
+  default  = ["us-central1"]
 }
 
 provider "cockroach" {
