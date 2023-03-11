@@ -1,5 +1,6 @@
 name: terraform preview
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - .github/workflows/terraform.preview.yaml
