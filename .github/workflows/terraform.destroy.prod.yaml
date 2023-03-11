@@ -9,7 +9,7 @@ env:
   TF_VAR_upstash_email: ${{ secrets.UPSTASH_EMAIL }}
   TF_VAR_upstash_api_key: ${{ secrets.UPSTASH_API_KEY }}
 jobs:
-  apply:
+  destroy:
     runs-on: ubuntu-latest
     defaults:
       run:
