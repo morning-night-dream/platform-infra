@@ -13,7 +13,7 @@ variable "upstash_api_key" {
 variable "upstash_region" {
   type     = string
   nullable = false
-  default  = "ap-northeast-1"
+  default  = "us-central-1"
 }
 
 provider "upstash" {
