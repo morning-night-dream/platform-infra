@@ -21,7 +21,7 @@ provider "upstash" {
   api_key = var.upstash_api_key
 }
 
-resource "upstash_redis_database" "upstash_redis" {
+resource "upstash_redis_database" "redis" {
   # 無料プランだと1アカウントにつき1つしか作成できないため
   count         = local.is_prod ? 1 : 0
   database_name = "platform-${var.env}"
@@ -30,8 +30,8 @@ resource "upstash_redis_database" "upstash_redis" {
   multizone     = "false"
 }
 
-data "upstash_redis_database_data" "upstash_redis_data" {
+data "upstash_redis_database_data" "redis_data" {
   count = local.is_prod ? 1 : 0
   # countによりリソースを作成した場合はindex指定が必要  
-  database_id = resource.upstash_redis_database.upstash_redis[0].database_id
+  database_id = resource.upstash_redis_database.redis[0].database_id
 }
