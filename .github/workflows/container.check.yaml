@@ -16,7 +16,7 @@ jobs:
         run: |
           for chart in $(find charts -mindepth 1 -maxdepth 1 -type d) ; do
             echo ${chart}
-            if [[ "${chart}" == "secret" ]] ; then
+            if [[ "${chart}" == "charts/secret" ]] ; then
               continue
             fi
             organization=$(yq '.image.organization' ${chart}/values.yaml)
