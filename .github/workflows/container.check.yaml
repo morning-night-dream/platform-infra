@@ -15,10 +15,10 @@ jobs:
       - name: Docker pull
         run: |
           for chart in $(find charts -mindepth 1 -maxdepth 1 -type d) ; do
-            echo ${chart}
             if [[ "${chart}" == "charts/secret" ]] ; then
               continue
             fi
+            echo ${chart}
             organization=$(yq '.image.organization' ${chart}/values.yaml)
             repository=$(yq '.image.repository' ${chart}/values.yaml)
             tag=$(yq '.image.tag' ${chart}/values.yaml)
