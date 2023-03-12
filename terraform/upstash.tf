@@ -27,7 +27,7 @@ resource "upstash_redis_database" "redis" {
   database_name = "platform-${var.env}"
   region        = var.upstash_region
   tls           = "true"
-  multi_zone     = "false"
+  multi_zone    = "false"
 }
 
 data "upstash_redis_database_data" "redis_data" {
