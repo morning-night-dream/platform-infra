@@ -1,6 +1,8 @@
 #!/bin/sh -eu
 
-cp secret/env/prod/app-core/*.yaml charts/app-core/templates/secret/
+cp secret/env/prod/*.yaml charts/secret/templates/
+
+helm upgrade --install --wait morning-night-dream-platform-secret ./charts/secret --namespace=toy-morning-night-dreamer
 
 helm upgrade --install --wait morning-night-dream-platform-app-core ./charts/app-core --namespace=toy-morning-night-dreamer
 
