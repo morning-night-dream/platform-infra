@@ -10,10 +10,10 @@ cat << EOF > secret/env/${env}/${chart}/${secret}.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-    name: platform-secret-${secret}
+  name: platform-secret-${secret}
 type: Opaque
 data:
-    ${secret}: ""
+  ${secret}: ""
 EOF
 
 touch secret/env/${env}/${chart}/${secret}.in.txt

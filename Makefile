@@ -28,15 +28,15 @@ tflint:
 
 .PHONY: secret
 secret:
-	@script/secret.sh ${env} ${chart} ${secret}
+	@secret/secret.sh ${env} ${chart} ${secret}
 
 .PHONY: encrypt
 encrypt:
-	@script/encrypt.sh ${env} ${chart} ${secret}
+	@secret/encrypt.sh ${env} ${chart} ${secret}
 
 .PHONY: decrypt
 decrypt:
-	@script/decrypt.sh ${env} ${chart} ${secret}
+	@secret/decrypt.sh ${env} ${chart} ${secret}
 
 .PHONY: tfdev
 tfdev:
