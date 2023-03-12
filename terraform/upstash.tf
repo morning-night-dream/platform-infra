@@ -13,7 +13,7 @@ variable "upstash_api_key" {
 variable "upstash_region" {
   type     = string
   nullable = false
-  default  = "us-central-1"
+  default  = "us-central1"
 }
 
 provider "upstash" {
@@ -27,7 +27,6 @@ resource "upstash_redis_database" "redis" {
   database_name = "platform-${var.env}"
   region        = var.upstash_region
   tls           = "true"
-  multizone     = "false"
 }
 
 data "upstash_redis_database_data" "redis_data" {
