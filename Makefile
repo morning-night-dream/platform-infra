@@ -7,6 +7,10 @@ SHELL=/bin/bash
 tool:
 	@aqua i
 
+.PHONY: chart
+chart:
+	@(cd charts && helm create ${chart})
+
 .PHONY: ymlfmt
 ymlfmt:
 	@yamlfmt
