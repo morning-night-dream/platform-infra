@@ -12,10 +12,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Install yq
         run: wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O yq && sudo chmod +x yq
-      - name: Docker pull
+      - name: Docker app pull
         run: |
           for chart in $(find charts -mindepth 1 -maxdepth 1 -type d) ; do
-            if [[ "${chart}" == "charts/secret" ]] ; then
+            if [[ "${chart}" == "charts/secret" || "${chart}" == "charts/database" ]] ; then
               continue
             fi
             echo ${chart}
@@ -24,3 +24,11 @@ jobs:
             tag=$(yq '.image.tag' ${chart}/values.yaml)
             docker pull ${organization}/${repository}:${tag}
           done
+      - name: Docker database pull
+        run: |
+          organization=$(yq '.image.organization' charts/database/values.yaml)
+          tag=$(yq '.image.tag' charts/database/values.yaml)
+          migrate=$(yq '.image.migrate.repository' charts/database/values.yaml)
+          docker pull ${organization}/${migrate}:${tag}
+          backup=$(yq '.image.backup.repository' charts/database/values.yaml)
+          docker pull ${organization}/${backup}:${tag}
