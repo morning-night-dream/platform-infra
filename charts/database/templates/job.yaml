@@ -23,5 +23,8 @@ spec:
         - name: root-ca
           secret:
             secretName: platform-secret-yugabyte-db-root-ca
+            items:
+              - key: root.crt
+                path: root.crt
       restartPolicy: Never
   backoffLimit: 0
