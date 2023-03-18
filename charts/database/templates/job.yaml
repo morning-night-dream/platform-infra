@@ -22,6 +22,6 @@ spec:
       volumes:
         - name: root-ca
           secret:
-            secretName: yogabyte-db-root-crt
+            secretName: platform-secret-yogabyte-db-root-crt
       restartPolicy: Never
   backoffLimit: 0
