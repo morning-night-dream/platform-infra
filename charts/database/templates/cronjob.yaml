@@ -16,8 +16,8 @@ spec:
                 - name: PRIMARY_DATABASE_URL
                   valueFrom:
                     secretKeyRef:
-                      name: platform-secret-yogabyte-db-url
-                      key: yogabyte-db-url
+                      name: platform-secret-yugabyte-db-url
+                      key: yugabyte-db-url
                 - name: SECONDARY_DATABASE_URL
                   valueFrom:
                     secretKeyRef:
