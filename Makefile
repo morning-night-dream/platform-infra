@@ -27,8 +27,8 @@ tfmt:
 
 .PHONY: tflint
 tflint:
-	@terraform fmt -recursive -check && \
-	terraform validate
+	@terraform fmt -recursive -check
+	@terraform validate
 
 .PHONY: secret
 secret:
