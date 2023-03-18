@@ -9,19 +9,19 @@ spec:
         - name: platform-db-migrate
           image: "{{ .Values.image.organization }}/{{ .Values.image.migrate.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: root-ca
-              mountPath: /etc/root-ca
-              readOnly: true
           env:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: platform-secret-yugabyte-db-url
                   key: yugabyte-db-url
+          volumeMounts:
+            - name: root-ca
+              mountPath: /etc/root-ca
+              readOnly: true
       volumes:
         - name: root-ca
           secret:
-            secretName: platform-secret-yugabyte-db-root-crt
+            secretName: platform-secret-yugabyte-db-root-ca
       restartPolicy: Never
   backoffLimit: 0
