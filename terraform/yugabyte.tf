@@ -13,7 +13,6 @@ provider "ybm" {
 
 resource "ybm_allow_list" "ybm_allow_list" {
   allow_list_name        = "allow-all"
-  allow_list_id          = "allow-all"
   allow_list_description = "allow all the ip addresses"
   cidr_list              = ["0.0.0.0/0"]
 }
@@ -29,7 +28,7 @@ resource "ybm_cluster" "single_region_cluster" {
     }
   ]
   cluster_tier           = "FREE"
-  cluster_allow_list_ids = ["allow-all"]
+  cluster_allow_list_ids = [ybm_allow_list.ybm_allow_list.allow_list_id]
   fault_tolerance        = "NONE"
   node_config = {
     num_cores = 2
