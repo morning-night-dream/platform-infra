@@ -1,25 +1,7 @@
-variable "sql_user_password" {
-  type      = string
-  nullable  = false
-  sensitive = true
-}
-
 variable "serverless_spend_limit" {
   type     = number
   nullable = false
   default  = 0
-}
-
-variable "cloud_provider" {
-  type     = string
-  nullable = false
-  default  = "GCP"
-}
-
-variable "cloud_provider_regions" {
-  type     = list(string)
-  nullable = false
-  default  = ["us-central1"]
 }
 
 provider "cockroach" {
@@ -27,7 +9,7 @@ provider "cockroach" {
 }
 
 resource "cockroach_cluster" "cockroach_db" {
-  name           = "platform-${var.env}"
+  name           = var.name
   cloud_provider = var.cloud_provider
   serverless = {
     spend_limit = var.serverless_spend_limit
@@ -37,6 +19,6 @@ resource "cockroach_cluster" "cockroach_db" {
 
 resource "cockroach_sql_user" "cockroach_db_user" {
   id       = cockroach_cluster.cockroach_db.id
-  name     = "platform-${var.env}"
-  password = var.sql_user_password
+  name     = var.name
+  password = var.password
 }
