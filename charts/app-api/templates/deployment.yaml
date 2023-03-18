@@ -50,6 +50,8 @@ spec:
                   key: firebase-api-key
             - name: FIREBASE_API_ENDPOINT
               value: https://identitytoolkit.googleapis.com
+            - name: CORS_ALLOW_ORIGINS
+              value: "{{ .Values.cors_allow_origins }}"
           resources:
             limits:
               cpu: "1"
