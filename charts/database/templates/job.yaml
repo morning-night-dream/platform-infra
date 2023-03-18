@@ -13,7 +13,7 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: platform-secret-cockroach-db-url
-                  key: cockroach-db-url
+                  name: platform-secret-yogabyte-db-url
+                  key: yogabyte-db-url
       restartPolicy: Never
   backoffLimit: 0
