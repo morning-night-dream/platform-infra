@@ -49,3 +49,7 @@ tfdev:
 .PHONY: tfinit
 tfinit:
 	@(cd terraform && terraform init)
+
+.PHONY: sops
+sops:
+	@sops --decrypt --in-place ${chart}
