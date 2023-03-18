@@ -10,7 +10,7 @@ provider "ybm" {
   auth_token = var.yugabyte_auth_token
 }
 
-resource "ybm_allow_list" "allow_list" {
+resource "ybm_allow_list" "ybm_allow_list" {
   allow_list_name        = "allow-all"
   allow_list_description = "allow all the ip addresses"
   cidr_list              = ["0.0.0.0/0"]
