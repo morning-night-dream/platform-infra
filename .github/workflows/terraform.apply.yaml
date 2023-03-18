@@ -16,7 +16,6 @@ env:
   TF_VAR_password: ${{ secrets.PASSWORD }}
   TF_VAR_upstash_email: ${{ secrets.UPSTASH_EMAIL }}
   TF_VAR_upstash_api_key: ${{ secrets.UPSTASH_API_KEY }}
-  TF_LOG: TRACE
 jobs:
   apply:
     runs-on: ubuntu-latest
