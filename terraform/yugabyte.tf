@@ -27,7 +27,6 @@ resource "ybm_cluster" "single_region_cluster" {
     }
   ]
   cluster_tier           = "FREE"
-  cluster_allow_list_ids = ["allow-list"]
   node_config = {
     num_cores = 2
   }
