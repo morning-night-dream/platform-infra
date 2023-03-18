@@ -15,13 +15,5 @@ spec:
                 secretKeyRef:
                   name: platform-secret-yugabyte-db-url
                   key: yugabyte-db-url
-          volumeMounts:
-            - name: root-ca
-              mountPath: /etc/root-ca
-              readOnly: true
-      volumes:
-        - name: root-ca
-          secret:
-            secretName: platform-secret-yugabyte-db-root-ca
       restartPolicy: Never
   backoffLimit: 0
