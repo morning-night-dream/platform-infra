@@ -17,11 +17,11 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: platform-secret-yogabyte-db-url
-                  key: yogabyte-db-url
+                  name: platform-secret-yugabyte-db-url
+                  key: yugabyte-db-url
       volumes:
         - name: root-ca
           secret:
-            secretName: platform-secret-yogabyte-db-root-crt
+            secretName: platform-secret-yugabyte-db-root-crt
       restartPolicy: Never
   backoffLimit: 0
