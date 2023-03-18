@@ -6,8 +6,9 @@ variable "yugabyte_auth_token" {
 }
 
 provider "ybm" {
-  host       = "cloud.yugabyte.com"
-  auth_token = var.yugabyte_auth_token
+  host            = "cloud.yugabyte.com"
+  use_secure_host = false
+  auth_token      = var.yugabyte_auth_token
 }
 
 resource "ybm_allow_list" "ybm_allow_list" {
