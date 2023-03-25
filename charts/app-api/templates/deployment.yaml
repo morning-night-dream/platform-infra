@@ -52,6 +52,11 @@ spec:
               value: https://identitytoolkit.googleapis.com
             - name: CORS_ALLOW_ORIGINS
               value: "{{ .Values.cors_allow_origins }}"
+            - name: DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secret-app-api-domain
+                  key: app-api-domain
           resources:
             limits:
               cpu: "1"
