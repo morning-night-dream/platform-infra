@@ -57,6 +57,12 @@ spec:
                 secretKeyRef:
                   name: platform-secret-app-api-domain
                   key: app-api-domain
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
           resources:
             limits:
               cpu: "1"
