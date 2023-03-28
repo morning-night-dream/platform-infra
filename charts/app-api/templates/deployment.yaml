@@ -59,7 +59,7 @@ spec:
                   key: app-api-domain
           livenessProbe:
             httpGet:
-              path: /api/v1/health
+              path: /health
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 10
