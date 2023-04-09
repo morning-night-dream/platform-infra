@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: platform-db-migrate
 spec:
+  backoffLimit: 0
   template:
     spec:
       containers:
@@ -16,4 +17,3 @@ spec:
                   name: platform-secret-yugabyte-db-url
                   key: yugabyte-db-url
       restartPolicy: Never
-  backoffLimit: 0
