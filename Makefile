@@ -7,6 +7,10 @@ SHELL=/bin/bash
 tool:
 	@aqua i
 
+.PHONY: env
+env:
+	@cp .secret.tmp.env .secret.env
+
 .PHONY: chart
 chart:
 	@(cd charts && helm create ${chart})
