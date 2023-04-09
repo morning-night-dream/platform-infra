@@ -1,0 +1,5 @@
+# https://www.okteto.com/docs/cloud/okteto-cli/
+deploy:
+  # - sh .okteto/sops.sh
+  # - sh .okteto/helm.sh
+  - sh .okteto/deploy.sh
