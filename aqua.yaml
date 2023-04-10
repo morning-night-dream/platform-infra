@@ -4,7 +4,5 @@ registries:
   - type: standard
     ref: v3.102.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-  - name: FiloSottile/age@v1.0.0
-  - name: mozilla/sops@v3.7.3
   - name: mikefarah/yq@v4.30.5
   - name: google/yamlfmt@v0.6.0

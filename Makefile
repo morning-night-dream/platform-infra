@@ -34,18 +34,6 @@ tflint:
 	@terraform fmt -recursive -check
 	@terraform validate
 
-.PHONY: secret
-secret:
-	@script/secret.sh ${secret}
-
-.PHONY: encrypt
-encrypt:
-	@script/encrypt.sh ${secret}
-
-.PHONY: decrypt
-decrypt:
-	@script/decrypt.sh ${secret}
-
 .PHONY: tfdev
 tfdev:
 	@(cd terraform && ENV=dev envsubst '$$ENV' < backend.tf.template > backend.tf)
@@ -53,7 +41,3 @@ tfdev:
 .PHONY: tfinit
 tfinit:
 	@(cd terraform && terraform init)
-
-.PHONY: sops
-sops:
-	@sops --decrypt --in-place ${chart}
