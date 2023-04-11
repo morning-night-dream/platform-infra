@@ -5,7 +5,7 @@ on:
       - main
     paths:
       - .github/workflows/okteto.deploy.yaml
-      - charts/**/*.yaml
+      - .okteto/okteto.yaml
   schedule:
     - cron: '0 15 * * *'
 jobs:
