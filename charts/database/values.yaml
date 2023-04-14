@@ -1,7 +1,7 @@
 env: prod
 image:
   organization: morningnightdream
-  tag: 2023-04-07-15-12-08
+  tag: 2023-04-14-15-12-35
   migrate:
     repository: platform-db-migrate
   backup:
