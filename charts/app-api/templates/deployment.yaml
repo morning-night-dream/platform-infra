@@ -21,6 +21,11 @@ spec:
       containers:
         - name: platform-app-api
           image: "{{ .Values.image.organization }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
           env:
             - name: ENV
               value: "{{ .Values.env }}"
