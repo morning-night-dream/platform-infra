@@ -2,5 +2,5 @@ env: prod
 image:
   organization: morningnightdream
   repository: platform-app-api
-  tag: 2023-04-21-15-12-30
+  tag: 2023-06-23-15-15-26
 cors_allow_origins: https://platform-web-beta.vercel.app
